@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div style="padding:70px">
+        <center><h1 class="display-3">Zanieczyszczenie powietrza Kraków</h1></center>
+    </div>
+    <div class="table-responsive-sm">
+    <center>
+    <table class = "table" style="width: 800px">
+        {% for i in range(lista_czujnikow) %}
+        <thead>
+        <tr>
+            <th colspan="7"><center><h3><b>{{ street[i] }}</b></h3></center></th>
+        </tr>
+        </thead>
+            <tr>
+                <td><b>Pierwiastek</b></td>
+                <td><b>Wartosc</b></td>
+                <td><b>Godzina pomiaru</b></td>
+                <td><b>Procent normy</b></td>
+            </tr>
+            {%for a in range(lista_czujnikow_len[i])%}
+            <tr>
+                <td style="width: 200px">
+                    {{ all[i][a][0] }}
+                </td>
+                <td style="width: 200px">
+                    {{ all[i][a][1]|round(2,'common') }}
+                </td>
+                <td style="width: 200px">
+                    {{ all[i][a][2] }}
+                </td>
+                <td>
+                    {{ all[i][a][3]|round(2,'common') }} %
+                </td>
+            </tr>
+            {% endfor %}
+        {% endfor %}
+    </table>
+    </center>
+    </div>
+</body>
+</html>
